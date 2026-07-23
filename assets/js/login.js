@@ -20,11 +20,13 @@ document.getElementById("login").addEventListener("submit", function (event) {
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "../keamanan/proses_login", true);
+
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         var response = xhr.responseText;
         var responseArray = response.split(":");
+
         if (responseArray[0].trim() === "success") {
           Swal.fire({
             icon: "success",
@@ -35,7 +37,7 @@ document.getElementById("login").addEventListener("submit", function (event) {
             didOpen: () => {
               Swal.showLoading();
             },
-          }).then((result) => {
+          }).then(() => {
             switch (responseArray[2].trim()) {
               case "admin":
                 window.location.href = "../pengguna/admin/";
@@ -52,9 +54,10 @@ document.getElementById("login").addEventListener("submit", function (event) {
             }
           });
 
-          if (rememberMe) {
+          if (typeof rememberMe !== "undefined" && rememberMe) {
             var username = formData.get("username");
             var password = formData.get("password");
+
             document.cookie =
               "username=" + encodeURIComponent(username) + "; path=/";
             document.cookie =
@@ -78,37 +81,38 @@ document.getElementById("login").addEventListener("submit", function (event) {
       }
     }
   };
+
   xhr.onerror = function () {
     Swal.fire("Error", "Gagal melakukan request", "error");
   };
+
   xhr.send(formData);
 });
 
-<<<<<<< HEAD
-=======
 window.onload = function () {
-  // Melakukan AJAX request untuk memeriksa akses di check_serial.php
+  // Melakukan AJAX request untuk memeriksa akses halaman
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "../keamanan/akses_halaman.php", true); // Ganti dengan path yang sesuai jika perlu
+  xhr.open("GET", "../keamanan/akses_halaman.php", true);
+
   xhr.onload = function () {
     if (xhr.status === 200) {
-      var response = xhr.responseText.trim(); // Menghapus spasi yang tidak perlu
+      var response = xhr.responseText.trim();
 
       if (response === "akses_diperbolehkan") {
-        // Jika akses diperbolehkan, lanjutkan dengan memuat halaman
         console.log(response);
       } else if (response === "akses_ditolak") {
-        //    arahkan ke halaman 403
         window.location.href = "403";
       } else {
-        // Jika respons tidak terduga
         window.location.href = "403";
       }
     } else {
-      // Jika request gagal
       window.location.href = "403";
     }
   };
-  xhr.send(); // Kirim request ke check_serial.php
+
+  xhr.onerror = function () {
+    window.location.href = "403";
+  };
+
+  xhr.send();
 };
->>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
