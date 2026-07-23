@@ -38,7 +38,6 @@
                             </div>
                         </section>
 
-<<<<<<< HEAD
                      <?php
 include '../../keamanan/koneksi.php';
 
@@ -273,172 +272,6 @@ $total_pages = ceil($total['total'] / $limit);
         </div>
     </div>
 </section>
-=======
-                        <?php
-                        include '../../keamanan/koneksi.php';
-
-                        $search = isset($_GET['search']) ? $_GET['search'] : '';
-                        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-                        $limit = 10;
-                        $offset = ($page - 1) * $limit;
-
-                        // -----------------------
-                        // QUERY DATA + SEARCH
-                        // -----------------------
-                        $query = "
-        SELECT 
-            id_pelayanan,
-            hari_tanggal_bulan,
-            waktu,
-            tempat,
-            pemimpin
-        FROM pelayanan
-        WHERE 
-            hari_tanggal_bulan LIKE ?
-            OR waktu LIKE ?
-            OR tempat LIKE ?
-            OR pemimpin LIKE ?
-        ORDER BY hari_tanggal_bulan DESC
-        LIMIT ?, ?
-    ";
-
-                        $stmt = $koneksi->prepare($query);
-                        $search_param = "%$search%";
-                        $stmt->bind_param(
-                            "ssssii",
-                            $search_param,
-                            $search_param,
-                            $search_param,
-                            $search_param,
-                            $offset,
-                            $limit
-                        );
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-
-                        // -----------------------
-                        // HITUNG TOTAL DATA
-                        // -----------------------
-                        $countQuery = "
-        SELECT COUNT(*) AS total 
-        FROM pelayanan
-        WHERE 
-            hari_tanggal_bulan LIKE ?
-            OR waktu LIKE ?
-            OR tempat LIKE ?
-            OR pemimpin LIKE ?
-    ";
-
-                        $stmt2 = $koneksi->prepare($countQuery);
-                        $stmt2->bind_param(
-                            "ssss",
-                            $search_param,
-                            $search_param,
-                            $search_param,
-                            $search_param
-                        );
-                        $stmt2->execute();
-                        $total = $stmt2->get_result()->fetch_assoc();
-                        $total_pages = ceil($total['total'] / $limit);
-                        ?>
-
-                        <!-- Tabel -->
-                        <section class="section">
-                            <div class="row">
-                                <div class="col-lg-12">
-
-                                    <div class="card">
-                                        <div class="card-body" style="overflow-x: hidden;">
-
-                                            <div style="overflow-x: auto;">
-                                                <?php if ($result->num_rows > 0): ?>
-                                                <table class="table table-hover text-center mt-3">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>No</th>
-                                                            <th>Hari / Tanggal / Bulan</th>
-                                                            <th>Waktu</th>
-                                                            <th>Tempat</th>
-                                                            <th>Pemimpin</th>
-                                                            <th>Aksi</th>
-                                                        </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                        <?php
-                                                            $no = $offset + 1;
-                                                            while ($row = $result->fetch_assoc()):
-                                                            ?>
-                                                        <tr>
-                                                            <td><?= $no++; ?></td>
-                                                            <?php
-                                                                    // Pastikan locale Indonesia aktif
-                                                                    setlocale(LC_TIME, 'id_ID.UTF-8', 'Indonesian', 'ID');
-
-                                                                    // Ambil tanggal dari database (format: YYYY-MM-DD)
-                                                                    $tanggal_db = $row['hari_tanggal_bulan'];
-
-                                                                    // Konversi ke timestamp
-                                                                    $tanggal_timestamp = strtotime($tanggal_db);
-
-                                                                    // Format menjadi: Senin, 25 Desember 2025
-                                                                    $format_tanggal = strftime("%A, %d %B %Y", $tanggal_timestamp);
-                                                                    ?>
-
-                                                            <td><?= htmlspecialchars($format_tanggal) ?></td>
-
-                                                            <td><?= htmlspecialchars($row['waktu']) ?></td>
-                                                            <td><?= htmlspecialchars($row['tempat']) ?></td>
-                                                            <td><?= htmlspecialchars($row['pemimpin']) ?></td>
-
-                                                            <td style="display:flex; gap:5px; justify-content:center;">
-                                                                <button class="btn btn-primary btn-sm" onclick="openEditModal(
-                                                    '<?= $row['id_pelayanan'] ?>',
-                                                    '<?= $row['hari_tanggal_bulan'] ?>',
-                                                    '<?= $row['waktu'] ?>',
-                                                    '<?= $row['tempat'] ?>',
-                                                    '<?= $row['pemimpin'] ?>'
-                                                )">
-                                                                    Edit
-                                                                </button>
-
-                                                                <button class="btn btn-danger btn-sm"
-                                                                    onclick="hapus('<?= $row['id_pelayanan'] ?>')">
-                                                                    Hapus
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <?php endwhile; ?>
-                                                    </tbody>
-                                                </table>
-                                                <?php else: ?>
-                                                <p class="text-center mt-4">Data tidak ditemukan.</p>
-                                                <?php endif; ?>
-
-                                                <!-- PAGINATION -->
-                                                <nav>
-                                                    <ul class="pagination justify-content-center">
-                                                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                                                        <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
-                                                            <a class="page-link"
-                                                                href="?page=<?= $i ?>&search=<?= $search ?>">
-                                                                <?= $i ?>
-                                                            </a>
-                                                        </li>
-                                                        <?php endfor; ?>
-                                                    </ul>
-                                                </nav>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </section>
-
->>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
                     </div>
 
                 </div>
@@ -472,7 +305,6 @@ $total_pages = ceil($total['total'] / $limit);
                                     <label for="waktu" class="form-label">Waktu</label>
                                     <input type="time" class="form-control" id="waktu" name="waktu" required>
                                 </div>
-<<<<<<< HEAD
                                 
                                 <!-- Rayon -->
 <div class="mb-3">
@@ -497,8 +329,6 @@ $total_pages = ceil($total['total'] / $limit);
         <option value="">-- Pilih Rayon Terlebih Dahulu --</option>
     </select>
 </div>
-=======
->>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
 
                                 <!-- tempat -->
                                 <div class="mb-3">
@@ -522,7 +352,6 @@ $total_pages = ceil($total['total'] / $limit);
                 </div>
             </div>
 
-<<<<<<< HEAD
 <!-- Modal Edit -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editDataModalLabel"
     aria-hidden="true">
@@ -754,69 +583,6 @@ document.getElementById('id_rayon').addEventListener('change', function() {
         });
 });
 </script>
-=======
-
-            <!-- Modal Edit -->
-            <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editDataModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editDataModalLabel">Edit <?= $page_title ?></h5>
-                            <button type="button" class="btn-close" id="closeEditModal" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="editForm" method="POST" action="proses/<?= $current_page ?>/edit.php"
-                                enctype="multipart/form-data">
-                                <input type="hidden" id="edit_id" name="id_pelayanan">
-
-                                <!-- hari_tanggal_bulan -->
-                                <div class="mb-3">
-                                    <label for="hari_tanggal_bulan" class="form-label">Hari / Tanggal / Bulan</label>
-                                    <input type="date" class="form-control" id="edit_hari_tanggal_bulan"
-                                        name="hari_tanggal_bulan" required>
-                                </div>
-
-                                <!-- waktu -->
-                                <div class="mb-3">
-                                    <label for="waktu" class="form-label">Waktu</label>
-                                    <input type="time" class="form-control" id="edit_waktu" name="waktu" required>
-                                </div>
-
-                                <!-- tempat -->
-                                <div class="mb-3">
-                                    <label for="tempat" class="form-label">Tempat</label>
-                                    <input type="text" class="form-control" id="edit_tempat" name="tempat" required>
-                                </div>
-
-                                <!-- pemimpin -->
-                                <div class="mb-3">
-                                    <label for="pemimpin" class="form-label">Pemimpin</label>
-                                    <input type="text" class="form-control" id="edit_pemimpin" name="pemimpin" required>
-                                </div>
-
-                                <!-- Submit Button -->
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-            function openEditModal(id, hari_tanggal_bulan, waktu, tempat, pemimpin) {
-                let editModal = new bootstrap.Modal(document.getElementById('editModal'));
-                document.getElementById('edit_id').value = id;
-                document.getElementById('edit_hari_tanggal_bulan').value = hari_tanggal_bulan;
-                document.getElementById('edit_waktu').value = waktu;
-                document.getElementById('edit_tempat').value = tempat;
-                document.getElementById('edit_pemimpin').value = pemimpin;
-                editModal.show();
-            }
-            </script>
->>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
             <?php include 'fitur/footer.php'; ?>
         </div>
     </div>
