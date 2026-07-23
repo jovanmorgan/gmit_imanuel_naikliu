@@ -1,5 +1,9 @@
 RewriteEngine On
+<<<<<<< HEAD
 RewriteBase /gmit_imanuel_naikliu/gmit_imanuel_naikliu/pengguna/admin/pendeta/
+=======
+RewriteBase /gmit_imanuel_naikliu/pengguna/admin/pendeta/
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
 
 
 # Menghapus ekstensi .php dari URL

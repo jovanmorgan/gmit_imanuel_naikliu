@@ -4,6 +4,7 @@
 <?php include 'fitur/head.php'; ?>
 
 <body>
+<<<<<<< HEAD
        <style>
                 /* Hero Section */
                 .gereja-hero {
@@ -76,6 +77,8 @@
                     background: linear-gradient(145deg, #f2f3ff, #ffffff, #eef0ff);
                 }
             </style>
+=======
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
     <div class="wrapper">
         <?php include 'fitur/sidebar.php'; ?>
         <div class="main-panel">
@@ -147,6 +150,7 @@
                     ?>
                     <?php include 'fitur/nama_halaman.php'; ?>
 
+<<<<<<< HEAD
                     <section class="gereja-hero">
                         <div class="gereja-hero-overlay">
                             <h1 class="hero-title">GMIT Imanuel Naikliu</h1>
@@ -155,6 +159,27 @@
                     </section>
 
                     <section class="section mt-3">
+=======
+                    <section class="section">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title" style="font-size: 30px;">Selamat Datang</h5>
+                                        <p>
+                                            Silakan lihat informsi yang kami sajikan pada website ini, Berikut
+                                            adalah
+                                            informasi data pada Halaman
+                                            <?= $page_title ?>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="section">
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
                         <div class="row">
 
                             <div class="row">

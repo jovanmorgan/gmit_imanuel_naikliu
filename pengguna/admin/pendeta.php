@@ -197,7 +197,11 @@
                                                                     <button class="btn btn-primary btn-sm"
                                                                         onclick="openEditModal('<?php echo $row['id_pendeta']; ?>','<?php echo $row['nama_lengkap']; ?>', '<?php echo $row['jenis_kelamin']; ?>', '<?php echo $row['tempat_lahir']; ?>', '<?php echo $row['tanggal_lahir']; ?>', '<?php echo $row['priode_jabatan']; ?>', '<?php echo $row['nomor_hp']; ?>', '<?php echo $row['username']; ?>', '<?php echo $row['password']; ?>')">Edit</button>
                                                                     <button class="btn btn-danger btn-sm"
+<<<<<<< HEAD
                                                                         onclick="hapus('<?php echo $row['id_pendeta']; ?>')">Hapus</button>
+=======
+                                                                        onclick="hapus(<?= $js_id; ?>)">Hapus</button>
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
                                                                 </td>
                                                             </tr>
                                                         <?php endwhile; ?>

@@ -65,7 +65,11 @@ function getIconForPage($page)
                     <a data-bs-toggle="collapse" href="#beritaMenu"
                         aria-expanded="<?= in_array($current_page, ['pelayanan', 'sidi', 'babtis', 'nikah']) ? 'true' : 'false'; ?>">
                         <i class="fas fa-newspaper"></i>
+<<<<<<< HEAD
                         <p>Informasi</p>
+=======
+                        <p>Berita</p>
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
                         <span class="caret"></span>
                     </a>
 

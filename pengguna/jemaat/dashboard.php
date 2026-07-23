@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'fitur/head.php'; ?>
+<<<<<<< HEAD
 <style>
     .gereja-gallery h2 {
     color: #2c3e50;
@@ -131,6 +132,9 @@
     object-fit:cover;
 }
 </style>
+=======
+
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
 <body>
     <div class="wrapper">
         <?php include 'fitur/sidebar.php'; ?>
@@ -192,6 +196,7 @@
                     // Menghitung total data dari setiap tabel
                     $counts = [];
                     foreach ($tables as $table => $details) {
+<<<<<<< HEAD
                         
                         // Ambil 5 pelayanan terbaru
 $pelayananTerbaru = mysqli_query(
@@ -200,6 +205,8 @@ $pelayananTerbaru = mysqli_query(
      ORDER BY hari_tanggal_bulan DESC, waktu DESC
      LIMIT 5"
 );
+=======
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
                         $query = "SELECT COUNT(*) as count FROM $table";
                         $result = mysqli_query($koneksi, $query);
                         $row = mysqli_fetch_assoc($result);
@@ -207,6 +214,7 @@ $pelayananTerbaru = mysqli_query(
                         mysqli_free_result($result);
                     }
 
+<<<<<<< HEAD
                     ?>
                     <?php include 'fitur/nama_halaman.php'; ?>
 
@@ -329,6 +337,29 @@ $pelayananTerbaru = mysqli_query(
 
     </div>
 </div>
+=======
+                    mysqli_close($koneksi);
+                    ?>
+                    <?php include 'fitur/nama_halaman.php'; ?>
+
+                    <section class="section">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title" style="font-size: 30px;">Selamat Datang</h5>
+                                        <p>
+                                            Silakan lihat informsi yang kami sajikan pada website ini, Berikut
+                                            adalah
+                                            informasi data pada Halaman
+                                            <?= $page_title ?>.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
 
                     <section class="section">
                         <div class="row">
@@ -336,6 +367,7 @@ $pelayananTerbaru = mysqli_query(
                             <div class="row">
                                 <!-- Kartu untuk tiap tabel -->
                                 <?php foreach ($tables as $table => $details): ?>
+<<<<<<< HEAD
                                     <div class="col-md-3 mb-4">
     <div class="card border-0 shadow-lg h-100 dashboard-card">
         <div class="card-body">
@@ -358,6 +390,28 @@ $pelayananTerbaru = mysqli_query(
         </div>
     </div>
 </div>
+=======
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="card card-stats card-round">
+                                            <div class="card-body">
+                                                <div class="row align-items-center">
+                                                    <div class="col-icon">
+                                                        <div class="icon-big text-center icon-secondary bubble-shadow-small"
+                                                            style="background-color: <?= $details['color']; ?>;">
+                                                            <i class="<?= $details['icon']; ?>"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-stats ms-3 ms-sm-0">
+                                                        <div class="numbers">
+                                                            <p class="card-category"><?= $details['label']; ?></p>
+                                                            <h4 class="card-title"><?= $counts[$table]; ?></h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
                                 <?php endforeach; ?>
 
 
@@ -365,18 +419,26 @@ $pelayananTerbaru = mysqli_query(
 
                         </div>
                     </section>
+<<<<<<< HEAD
             
+=======
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
 
                 </div>
             </div>
 
+<<<<<<< HEAD
             <?php
                                 mysqli_close($koneksi);
 include 'fitur/footer.php'; ?>
+=======
+            <?php include 'fitur/footer.php'; ?>
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
         </div>
 
     </div>
     <?php include 'fitur/js.php'; ?>
+<<<<<<< HEAD
     <script>
 function openLightbox(src) {
     document.getElementById("lightbox").style.display = "block";
@@ -387,6 +449,8 @@ function closeLightbox() {
     document.getElementById("lightbox").style.display = "none";
 }
 </script>
+=======
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
 </body>
 
 </html>

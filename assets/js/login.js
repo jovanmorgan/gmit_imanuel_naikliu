@@ -84,3 +84,31 @@ document.getElementById("login").addEventListener("submit", function (event) {
   xhr.send(formData);
 });
 
+<<<<<<< HEAD
+=======
+window.onload = function () {
+  // Melakukan AJAX request untuk memeriksa akses di check_serial.php
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../keamanan/akses_halaman.php", true); // Ganti dengan path yang sesuai jika perlu
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var response = xhr.responseText.trim(); // Menghapus spasi yang tidak perlu
+
+      if (response === "akses_diperbolehkan") {
+        // Jika akses diperbolehkan, lanjutkan dengan memuat halaman
+        console.log(response);
+      } else if (response === "akses_ditolak") {
+        //    arahkan ke halaman 403
+        window.location.href = "403";
+      } else {
+        // Jika respons tidak terduga
+        window.location.href = "403";
+      }
+    } else {
+      // Jika request gagal
+      window.location.href = "403";
+    }
+  };
+  xhr.send(); // Kirim request ke check_serial.php
+};
+>>>>>>> 4103a0366611edb09f83497d66e49d67f25169a0
